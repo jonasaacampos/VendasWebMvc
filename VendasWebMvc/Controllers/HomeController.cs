@@ -5,14 +5,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using VendasWebMvc.Models;
+using VendasWebMvc.Models.ViewModels;
 
 namespace VendasWebMvc.Controllers
+
 {
     public class HomeController : Controller
     {
         //ações do controlador Home
 
-        public IActionResult Index()
+        /* IActionResult => este é o tipo genérico (Interface) para todo o resultado de uma ação
+         * Como tipo de dado poderíamos utilizar o ViewResult, ou PartialView, 
+         * Mas manter a interface permite a impletação de forma mais flexível
+         */
+
+        public IActionResult Index() 
         {
             return View();
         }
