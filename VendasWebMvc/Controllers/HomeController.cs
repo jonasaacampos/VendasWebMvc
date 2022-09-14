@@ -10,6 +10,8 @@ namespace VendasWebMvc.Controllers
 {
     public class HomeController : Controller
     {
+        //ações do controlador Home
+
         public IActionResult Index()
         {
             return View();
@@ -17,7 +19,9 @@ namespace VendasWebMvc.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Title"] = "Sobre este Projeto";
+            ViewData["Message"] = "Sistema de gestão de vendas para estudos de C#";
+            ViewData["Github"] = "https://github.com/jonasaacampos";
 
             return View();
         }
