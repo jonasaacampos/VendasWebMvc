@@ -39,14 +39,20 @@ namespace VendasWebMvc
             services.AddDbContext<VendasWebMvcContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("VendasWebMvcContext"), builder =>
                         builder.MigrationsAssembly("VendasWebMvc")));
+
+
+            services.AddScoped<SeedingService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
-            if (env.IsDevelopment())
+            //caso esteja em ambiente de desenvolvimento, chamar método de popular banco de dados
+            if (env.IsDevelopment()) 
             {
                 app.UseDeveloperExceptionPage();
+                seedingService.Seed();
             }
             else
             {
@@ -64,6 +70,8 @@ namespace VendasWebMvc
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }
